@@ -1,0 +1,258 @@
+<html>
+
+
+<head>
+
+	<title>Group 19 Web Admin</title>
+	<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="style.css" />
+	
+</head>
+
+
+<body>
+
+	<div id="login_div" class="main-div">
+		<h3>Group 19 - Firebase Web Login</h3>
+
+		<input type="email" placeholder="Email..." id="email_field" />
+		<input type="password" placeholder="Password..." id="password_field" />
+
+		<button onclick="login()">Login to Account</button>
+	</div>
+
+	<div id="user_div" class="loggedin-div">
+		<div class="tab">
+			<button class="tablinks" onclick="openCity(event, 'Tab1')">Bookings</button>
+			<button class="tablinks" onclick="openCity(event, 'Tab2'), initialize()">Map</button>
+			<button class="tablinks" onclick="openCity(event, 'Tab3')">Users</button>
+			<button class="tablinks" onclick="openCity(event, 'Tab6')">History</button>
+			<button class="tablinks" onclick="openCity(event, 'Tab4')">Database</button>
+			<button class="tablinks" onclick="openCity(event, 'Tab5')">Help</button>
+		</div>
+
+		<div id="Tab3" class="tabcontent">
+			<h3>User Database</h3>
+			<div style="overflow-x:auto;">
+				<table id="user_list" border="2">
+				</table>
+			</div>
+		</div>
+
+		<div id="Tab6" class="tabcontent">
+			<h3>User History</h3>
+			<div style="overflow-x:auto;">
+					Customer ID <input type="text" name="shID" id="shID">
+					<button onclick="search_history()"> Search </button>
+					<div id="search_div2" > <button onclick="history()"> Reset </button>
+					<p id= "sUser"></p></div>
+					</td>
+					<table id="history_list" border="2">
+				</table>
+			</div>
+		</div>
+
+		<div id="Tab2" class="tabcontent">
+			<h3>Google Map</h3>
+			<title>Geolocation</title>
+			
+			<label id = 'check'></label>
+			<label id = 'statLat'></label>
+			<label id = 'statLng'></label>
+
+			<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+			<meta charset="utf-8">
+
+			<p id = "requestCoords"></p>
+			
+			<style>
+    	  		#map 
+				{
+    	    		height: 100%;
+    	  		}
+    	  	
+    	  		html, body 
+				{
+    	    		height: 80%;
+    	    		margin: 0;
+    	    		padding: 0;
+    	  		}
+    		</style>	
+
+			<div id="right-panel"></div>
+			<div id="map"></div>	
+			<p>Total Distance: <span id="total"></span></p>
+			
+    		<script async defer
+    			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGiRmDUoFtHP2jgp02fqo6Pg3B44fPIwc&libraries=places&callback=initialize">
+			</script>
+
+			<div id="locationField">
+      <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+    </div>
+
+    <table id="address">
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number"
+              disabled="true"></input></td>
+        <td class="wideField" colspan="2"><input class="field" id="route"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <!-- Note: Selection of address components in this example is typical.
+             You may need to adjust it for the locations relevant to your app. See
+             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+        -->
+        <td class="wideField" colspan="3"><input class="field" id="locality"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field"
+              id="administrative_area_level_1" disabled="true"></input></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code"
+              disabled="true"></input></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field"
+              id="country" disabled="true"></input></td>
+      </tr>
+    </table>
+
+			Origin <input type="text" name="start" id="start" /> 
+			Destination <input type="text" name="end" id="end" /> 
+			<input type="button" value="Update"/>
+			<p id = "notice"></p>
+			
+			<!--
+			<input type="button" value="Update" onclick="manual_coordinates();" />
+			<input type="button" value="Use Database" onclick="db_coordinates();" />
+			-->
+		</div>
+
+	
+		<div id="Tab5" class="tabcontent">
+			<h3>Help</h3>
+			<h3>Booking & Map Use</h3>
+			<p>Bookings can be accepted or denied entering the customer ID in the text field and clicking accept or reject.</p>
+			<p>To use the map to track bookings enter the customer ID in the text field and click track.</p>
+			<p>The map can be used to get the route and distance between two points.</p>
+			<p>Enter the appropiete place name or coordinates into the origin and destination text fields.</p>
+			<p>Although not fully integrated the text filed below the map can prompt area names.</p>
+			<p>these names can be used to get a start or end location.</p><br>
+
+			<h3>Users & History</h3>
+			<p>The user tab shows user data and history shows user history.</p>
+			<p>Futhermore users can be searched using their user ID in history.</p>
+			<p>By entering the user ID in the text field and clicking search.</p>
+			<p>All data relating to that user will show.</p><br>
+
+			<h3>Database</h3>
+			<p>To use the database effectively enter all the data nesscessary before updating an object, with the update button.</p>
+			<p>Leaving out data will cause data fields to end up blank.</p>
+			<p>You can also create new objects by entering in new values that the database does not already have and clicking update.
+			<p>Objects can be removed by entering their ID and clicking the delete button.</p>
+			<p>To use the search function enter data in one of the text fields and click search.</p>		
+		</div>
+
+		<div id="Tab1" class="tabcontent"  style="display:block">
+			
+				<h3>Welcome User</h3>
+		
+				<p id="user_para">Welcome to Firebase web login Example. You're currently logged in.</p>
+			
+				<button class="logout" onclick="logout()">Logout</button>
+			
+			<h3>Vechicle Bookings</h3>
+			
+			<table id="booking_list" border="2">
+			</table>
+			
+			<p id="booked"></p>
+
+			Customer ID:
+			<input type="text" name="custID" id="custID"></td>
+
+			<button onclick="accept()">Accept</button>
+			<button onclick="reject()">Reject</button>
+			<button onclick="track()">Track</button>
+		</div>
+		
+		<div id="Tab4" class="tabcontent">
+		
+			<h3>Vehicle Database</h3>
+		
+			<div id="search_div" style="display:none">
+					<h3> Search Results: </h3>
+					<table id="search_list" border="2">
+					</table>
+					<button onclick="remove_result()"> Reset </button>
+					<p id="list"></p>
+			</div>
+			
+			<pre id="object"></pre>
+			<p id="0list"></p>
+		
+			<div id="database_div" style="overflow-x:auto;">
+				<table id="vehicle_list" border="2">
+				</table>
+			</div>
+
+			<br>
+		
+			<table>
+				<tr>
+					<td id="txtboxlbl1"></td>
+					<td><input type="text" name="objectId" id="objectId" /></td>
+					<td id="txtboxlbl2"></td>
+					<td><input type="text" name="vehicle" id="vehicle" /></td>
+				</tr>
+			
+				<tr>
+					<td id="txtboxlbl3"></td>
+					<td><input type="text" name="manufacture" id="manufacture" /></td>
+					<td id="txtboxlbl4"></td>
+					<td><input type="text" name="seats" id="seats" /></td>
+				</tr>
+				<tr>
+					<td id="txtboxlbl5"></td>
+					<td><input type="checkbox" name="engaged" id="engaged"></td>
+				</tr>
+			
+				<tr>
+					<td colspan="2">
+						<input type="button" value="Update" onclick="update_user();" />
+						<input type="button" value="Delete" onclick="delete_user();" />
+						<input type="button" value="Search" onclick="search_user();" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+<script>
+// Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAnDAO7576W6G6O5UIdEKW_pxOfh1FcvGI",
+    authDomain: "gprojectal.firebaseapp.com",
+    databaseURL: "https://gprojectal.firebaseio.com",
+    projectId: "gprojectal",
+    storageBucket: "gprojectal.appspot.com",
+    messagingSenderId: "339144392988"
+  };
+  firebase.initializeApp(config);
+</script>
+  
+<script src="js/index.js"></script>
+<script src="js/map.js"></script>
+  
+</body>
+
+
+</html>
