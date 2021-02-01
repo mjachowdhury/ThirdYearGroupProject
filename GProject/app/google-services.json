@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "339144392988",
+    "firebase_url": "https://gprojectal.firebaseio.com",
+    "project_id": "gprojectal",
+    "storage_bucket": "gprojectal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339144392988:android:cf6bb0b3584feed4",
+        "android_client_info": {
+          "package_name": "com.project.transportAl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339144392988-ot72hdjeeerhadqlt23o2mekv9it97md.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.transportAl",
+            "certificate_hash": "84b7ea675e5e5bc6dbe230ca7e7e3f8f8fe15bba"
+          }
+        },
+        {
+          "client_id": "339144392988-q9atqjv2h4teb4objnjda95155llpnnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCg1vcyJwCS9E4wJYzMCQIoxpbxcHXQMqA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339144392988-q9atqjv2h4teb4objnjda95155llpnnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
